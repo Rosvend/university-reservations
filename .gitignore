@@ -1,89 +1,20 @@
-rosvend@rosvend-pc:~/Documents/University/6. Sexto semestre/Ingenieria de software/university-reservations$ npm init -y 
-Wrote to /home/rosvend/Documents/University/6. Sexto semestre/Ingenieria de software/university-reservations/package.json:
+node_modules/
 
-{
-  "name": "university-reservations",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rosvend/university-reservations.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/rosvend/university-reservations/issues"
-  },
-  "homepage": "https://github.com/rosvend/university-reservations#readme"
-}
+# Production build
+dist/
 
+# Environment files
+.env
+.env.local
 
+# Editor directories
+.vscode/
+.idea/
 
-rosvend@rosvend-pc:~/Documents/University/6. Sexto semestre/Ingenieria de software/university-reservations$ npm install react react-dom
+# OS files
+.DS_Store
+Thumbs.db
 
-added 3 packages, and audited 4 packages in 2s
-
-found 0 vulnerabilities
-rosvend@rosvend-pc:~/Documents/University/6. Sexto semestre/Ingenieria de software/university-reservations$ npm install -D vite @vitejs/plugin-react
-
-added 61 packages, and audited 65 packages in 9s
-
-9 packages are looking for funding
-  run `npm fund` for details
-
-found 0 vulnerabilities
-rosvend@rosvend-pc:~/Documents/University/6. Sexto semestre/Ingenieria de software/university-reservations$ npm install -D vitest @testing-library/react @testing-library/jest-dom jsdom
-
-added 99 packages, and audited 164 packages in 11s
-
-28 packages are looking for funding
-  run `npm fund` for details
-
-found 0 vulnerabilities
-rosvend@rosvend-pc:~/Documents/University/6. Sexto semestre/Ingenieria de software/university-reservations$ mkdir -p src/components src/pages src/data src/utils src/tests src/assets public
-rosvend@rosvend-pc:~/Documents/University/6. Sexto semestre/Ingenieria de software/university-reservations$ touch src/main.jsx src/App.jsx src/index.css
-rosvend@rosvend-pc:~/Documents/University/6. Sexto semestre/Ingenieria de software/university-reservations$ touch index.html vite.config.js vitest.config.js
-rosvend@rosvend-pc:~/Documents/University/6. Sexto semestre/Ingenieria de software/university-reservations$ touch src/tests/setup.js
-rosvend@rosvend-pc:~/Documents/University/6. Sexto semestre/Ingenieria de software/university-reservations$ npm install 
-
-added 123 packages, removed 16 packages, changed 41 packages, and audited 271 packages in 12s
-
-82 packages are looking for funding
-  run `npm fund` for details
-
-4 moderate severity vulnerabilities
-
-To address all issues (including breaking changes), run:
-  npm audit fix --force
-
-Run `npm audit` for details.
-rosvend@rosvend-pc:~/Documents/University/6. Sexto semestre/Ingenieria de software/university-reservations$ npm audit 
-# npm audit report
-
-esbuild  <=0.24.2
-Severity: moderate
-esbuild enables any website to send any requests to the development server and read the response - https://github.com/advisories/GHSA-67mh-4wv8-2f99
-fix available via `npm audit fix --force`
-Will install vite@7.1.10, which is a breaking change
-node_modules/esbuild
-  vite  0.11.0 - 6.1.6
-  Depends on vulnerable versions of esbuild
-  node_modules/vite
-    vite-node  <=2.2.0-beta.2
-    Depends on vulnerable versions of vite
-    node_modules/vite-node
-      vitest  0.0.1 - 0.0.12 || 0.0.29 - 0.0.122 || 0.3.3 - 2.2.0-beta.2
-      Depends on vulnerable versions of vite
-      Depends on vulnerable versions of vite-node
-      node_modules/vitest
-
-4 moderate severity vulnerabilities
-
-To address all issues (including breaking changes), run:
-  npm audit fix --force
-rosvend@rosvend-pc:~/Documents/University/6. Sexto semestre/Ingenieria de software/university-reservations$ 
+# Logs
+*.log
+npm-debug.log*
