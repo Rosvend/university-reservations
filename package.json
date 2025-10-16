@@ -1,0 +1,36 @@
+{
+  "name": "university-reservations",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Sistema de Reservas Universitarias - Proyecto de Ingeniería de Software",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rosvend/university-reservations.git"
+  },
+  "keywords": ["reservations", "university", "frontend"],
+  "author": "rosvend",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rosvend/university-reservations/issues"
+  },
+  "homepage": "https://github.com/rosvend/university-reservations#readme",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.0.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "jsdom": "^25.0.1",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.8"
+  }
+}
