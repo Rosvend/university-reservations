@@ -64,7 +64,7 @@ To simplify the management of university space reservations through a **modern, 
 ## Project Structure
 
 ```bash
-📂 university-reservation-system
+📂 university-reservations
 ├── 📁 src
 │   ├── 📁 components
 │   ├── 📁 pages
@@ -84,8 +84,8 @@ To simplify the management of university space reservations through a **modern, 
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/university-reservation-system.git
-   cd university-reservation-system
+   git clone https://github.com/rosvend/university-reservations.git
+   cd university-reservations
 ````
 
 2. **Install dependencies**
@@ -159,6 +159,3 @@ npm run test
 ![UML Use Case Diagram](/docs/use-case-diagram1.png)
 
 ---
-
-```
-```
