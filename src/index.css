@@ -37,6 +37,10 @@ body {
   padding: 32px 0;
 }
 
+.app-section {
+  margin-bottom: 48px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .app-header {
