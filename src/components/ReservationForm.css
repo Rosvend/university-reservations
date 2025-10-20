@@ -131,6 +131,94 @@
   transform: none;
 }
 
+/* FR5: Space Image Preview Styles */
+.reservation-form__image-preview {
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 2px solid #e9ecef;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.reservation-form__image-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 8px 0;
+}
+
+.reservation-form__image-description {
+  font-size: 0.9375rem;
+  color: #6c757d;
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+.reservation-form__image-container {
+  position: relative;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #e9ecef;
+  margin-bottom: 12px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reservation-form__image-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #6c757d;
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.reservation-form__image {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.reservation-form__image--loaded {
+  opacity: 1;
+}
+
+.reservation-form__image-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.reservation-form__image-info-item {
+  font-size: 0.875rem;
+  color: #495057;
+}
+
+.reservation-form__image-info-item strong {
+  color: #2c3e50;
+  margin-right: 4px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .reservation-form-container {
@@ -159,5 +247,26 @@
   .reservation-form__button {
     padding: 12px 20px;
     font-size: 0.9375rem;
+  }
+
+  .reservation-form__image-preview {
+    padding: 16px;
+  }
+
+  .reservation-form__image-title {
+    font-size: 1rem;
+  }
+
+  .reservation-form__image-description {
+    font-size: 0.875rem;
+  }
+
+  .reservation-form__image {
+    max-height: 300px;
+  }
+
+  .reservation-form__image-info {
+    flex-direction: column;
+    gap: 8px;
   }
 }

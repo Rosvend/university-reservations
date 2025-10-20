@@ -5,7 +5,8 @@ import { clearAllReservations, saveReservation } from '../utils/reservationUtils
 
 /**
  * Test suite for ReservationForm component
- * Verifies FR2 (create reservation) and HU2 (reservation form)
+ * Verifies FR2 (create reservation), FR3 (prevent duplicates), and FR5 (show space image)
+ * Implements US2 (reservation form) and US5 (view space image)
  */
 describe('ReservationForm Component', () => {
   beforeEach(() => {
@@ -176,5 +177,72 @@ describe('ReservationForm Component', () => {
     // Check for success message
     const successMessage = screen.getByText(/Reservation confirmed/i);
     expect(successMessage).toBeDefined();
+  });
+
+  // FR5: Test that image preview appears when space is selected
+  it('should display space image preview when a space is selected', () => {
+    render(<ReservationForm />);
+    
+    // Initially no image preview should be visible
+    expect(screen.queryByText(/Selected Space:/i)).toBeNull();
+    
+    // Select a space
+    fireEvent.change(screen.getByLabelText(/Select Space/i), {
+      target: { value: '1' }
+    });
+    
+    // Image preview should now be visible
+    expect(screen.getByText(/Selected Space: Classrooms/i)).toBeDefined();
+    expect(screen.getByAltText(/Classrooms/i)).toBeDefined();
+  });
+
+  // FR5: Test that image preview shows space details
+  it('should display space details in the image preview', () => {
+    render(<ReservationForm />);
+    
+    // Select a space
+    fireEvent.change(screen.getByLabelText(/Select Space/i), {
+      target: { value: '1' }
+    });
+    
+    // Check that space details are displayed (using more specific text)
+    expect(screen.getByText(/30 people/i)).toBeDefined();
+    expect(screen.getByText(/Selected Space: Classrooms/i)).toBeDefined();
+  });
+
+  // FR5: Test that image preview disappears when space is deselected
+  it('should hide image preview when space selection is cleared', () => {
+    render(<ReservationForm />);
+    
+    // Select a space
+    fireEvent.change(screen.getByLabelText(/Select Space/i), {
+      target: { value: '1' }
+    });
+    
+    // Image preview should be visible
+    expect(screen.getByText(/Selected Space: Classrooms/i)).toBeDefined();
+    
+    // Deselect the space
+    fireEvent.change(screen.getByLabelText(/Select Space/i), {
+      target: { value: '' }
+    });
+    
+    // Image preview should be hidden
+    expect(screen.queryByText(/Selected Space:/i)).toBeNull();
+  });
+
+  // FR5: Test that image has proper accessibility attributes
+  it('should have proper alt text for the space image', () => {
+    render(<ReservationForm />);
+    
+    // Select a space
+    fireEvent.change(screen.getByLabelText(/Select Space/i), {
+      target: { value: '1' }
+    });
+    
+    // Check that image has alt text
+    const image = screen.getByAltText(/Classrooms/i);
+    expect(image).toBeDefined();
+    expect(image.getAttribute('alt')).toContain('Classrooms');
   });
 });
