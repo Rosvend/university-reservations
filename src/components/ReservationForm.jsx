@@ -20,9 +20,37 @@ function ReservationForm() {
   const [message, setMessage] = useState({ text: '', type: '' });
   const [selectedSpace, setSelectedSpace] = useState(null);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
 
   // Get today's date in YYYY-MM-DD format for min date validation
   const today = new Date().toISOString().split('T')[0];
+
+  /**
+   * Play notification sound on successful reservation
+   * Bonus Feature: Sound notification
+   */
+  const playNotificationSound = () => {
+    try {
+      // Create a simple success beep using Web Audio API
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.value = 800; // Frequency in Hz
+      oscillator.type = 'sine';
+      
+      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 0.3);
+    } catch (error) {
+      console.log('Audio notification not available:', error);
+    }
+  };
 
   /**
    * Handle input changes
@@ -102,6 +130,12 @@ function ReservationForm() {
     const result = saveReservation(reservation);
 
     if (result.success) {
+      // Bonus Feature: Play notification sound
+      playNotificationSound();
+      
+      // Bonus Feature: Show visual notification animation
+      setShowNotification(true);
+      
       setMessage({ 
         text: `✓ Reservation confirmed for ${selectedSpace.name} on ${formData.date} at ${formData.time}`, 
         type: 'success' 
@@ -119,8 +153,11 @@ function ReservationForm() {
       setSelectedSpace(null);
       setImageLoaded(false);
 
-      // Clear message after 5 seconds
-      setTimeout(() => setMessage({ text: '', type: '' }), 5000);
+      // Clear message and notification after 5 seconds
+      setTimeout(() => {
+        setMessage({ text: '', type: '' });
+        setShowNotification(false);
+      }, 5000);
     } else {
       setMessage({ 
         text: `✗ ${result.message}`, 
@@ -131,6 +168,14 @@ function ReservationForm() {
 
   return (
     <div className="reservation-form-container">
+      {/* Bonus Feature: Visual notification badge */}
+      {showNotification && (
+        <div className="reservation-form__notification-badge">
+          <span className="reservation-form__notification-icon">🎉</span>
+          <span className="reservation-form__notification-text">Success!</span>
+        </div>
+      )}
+
       <h2 className="reservation-form__title">Make a Reservation</h2>
       <p className="reservation-form__subtitle">Fill in the details to book your space</p>
 

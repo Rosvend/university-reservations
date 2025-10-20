@@ -245,4 +245,33 @@ describe('ReservationForm Component', () => {
     expect(image).toBeDefined();
     expect(image.getAttribute('alt')).toContain('Classrooms');
   });
+
+  // Bonus Feature: Test notification badge appears on success
+  it('should show notification badge when reservation is successful', () => {
+    render(<ReservationForm />);
+    
+    // Fill in the form
+    fireEvent.change(screen.getByLabelText(/Student Name/i), {
+      target: { value: 'Test Student' }
+    });
+    
+    fireEvent.change(screen.getByLabelText(/Select Space/i), {
+      target: { value: '1' }
+    });
+    
+    fireEvent.change(screen.getByLabelText(/Reservation Date/i), {
+      target: { value: '2025-12-31' }
+    });
+    
+    fireEvent.change(screen.getByLabelText(/Reservation Time/i), {
+      target: { value: '10:00' }
+    });
+    
+    // Submit the form
+    const submitButton = screen.getByText('Create Reservation');
+    fireEvent.click(submitButton);
+    
+    // Check that notification badge appears
+    expect(screen.getByText('Success!')).toBeDefined();
+  });
 });
