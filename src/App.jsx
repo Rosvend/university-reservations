@@ -1,6 +1,7 @@
 import React from 'react'
 import SpaceList from './components/SpaceList'
 import ReservationForm from './components/ReservationForm'
+import ReservationList from './components/ReservationList'
 
 function App() {
   return (
@@ -13,6 +14,10 @@ function App() {
       <main className="app-main">
         <section className="app-section">
           <ReservationForm />
+        </section>
+        
+        <section className="app-section">
+          <ReservationList />
         </section>
         
         <section className="app-section">
