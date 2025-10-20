@@ -6,7 +6,8 @@ import './ReservationForm.css';
 /**
  * ReservationForm Component
  * Allows students to create a reservation with name, date, time, and space
- * Fulfills FR2 (create reservation) and HU2 (reservation form)
+ * Fulfills FR2 (create reservation), FR3 (prevent duplicates), and FR5 (show space image)
+ * Implements US2 (reservation form) and US5 (view space image)
  */
 function ReservationForm() {
   const [formData, setFormData] = useState({
@@ -17,12 +18,15 @@ function ReservationForm() {
   });
   
   const [message, setMessage] = useState({ text: '', type: '' });
+  const [selectedSpace, setSelectedSpace] = useState(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   // Get today's date in YYYY-MM-DD format for min date validation
   const today = new Date().toISOString().split('T')[0];
 
   /**
    * Handle input changes
+   * FR5: Update selected space when space selection changes
    */
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,6 +34,30 @@ function ReservationForm() {
       ...prev,
       [name]: value
     }));
+
+    // FR5: When space is selected, load the space details for image preview
+    if (name === 'spaceId' && value) {
+      const space = spacesData.spaces.find(s => s.id === parseInt(value));
+      setSelectedSpace(space);
+      setImageLoaded(false); // Reset image loaded state
+    } else if (name === 'spaceId' && !value) {
+      setSelectedSpace(null);
+      setImageLoaded(false);
+    }
+  };
+
+  /**
+   * Handle image load event
+   */
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
+  /**
+   * Handle image error event
+   */
+  const handleImageError = () => {
+    setImageLoaded(true); // Still set to true to hide the loading indicator
   };
 
   /**
@@ -86,6 +114,10 @@ function ReservationForm() {
         time: '',
         spaceId: ''
       });
+
+      // Reset selected space and image
+      setSelectedSpace(null);
+      setImageLoaded(false);
 
       // Clear message after 5 seconds
       setTimeout(() => setMessage({ text: '', type: '' }), 5000);
@@ -149,6 +181,41 @@ function ReservationForm() {
             ))}
           </select>
         </div>
+
+        {/* FR5: Space Image Preview */}
+        {selectedSpace && (
+          <div className="reservation-form__image-preview">
+            <h3 className="reservation-form__image-title">
+              Selected Space: {selectedSpace.name}
+            </h3>
+            <p className="reservation-form__image-description">
+              {selectedSpace.description}
+            </p>
+            <div className="reservation-form__image-container">
+              {!imageLoaded && (
+                <div className="reservation-form__image-loading">
+                  Loading image...
+                </div>
+              )}
+              <img
+                src={selectedSpace.image_path}
+                alt={`${selectedSpace.name} - ${selectedSpace.description}`}
+                className={`reservation-form__image ${imageLoaded ? 'reservation-form__image--loaded' : ''}`}
+                onLoad={handleImageLoad}
+                onError={handleImageError}
+                loading="lazy"
+              />
+            </div>
+            <div className="reservation-form__image-info">
+              <span className="reservation-form__image-info-item">
+                <strong>Type:</strong> {selectedSpace.type}
+              </span>
+              <span className="reservation-form__image-info-item">
+                <strong>Capacity:</strong> {selectedSpace.capacity} people
+              </span>
+            </div>
+          </div>
+        )}
 
         {/* Date */}
         <div className="reservation-form__field">
