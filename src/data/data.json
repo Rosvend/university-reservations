@@ -6,7 +6,7 @@
             "description": "Classrooms designed for educational purposes at various levels.",
             "type": "Education",
             "capacity": 30,
-            "image_path": "/images/classrooms.jpg"
+            "image_path": "/images/aula.jpg"
         },
         {
             "id": 2,
@@ -14,7 +14,7 @@
             "description": "A facility for hands-on learning and experimentation in industrial design.",
             "type": "Research",
             "capacity": 20,
-            "image_path": "/images/laboratories.jpg"
+            "image_path": "/images/industrial-design-lab.jpg"
         },
         {
             "id": 3,
@@ -22,7 +22,7 @@
             "description": "A spacious area for playing volleyball.",
             "type": "Sports",
             "capacity": 20,
-            "image_path": "/images/volleyball_court.jpg"
+            "image_path": "/images/Polideportivo_UPB-Medellin.jpg"
         },
         {
             "id": 4,
@@ -30,7 +30,7 @@
             "description": "A large hall for events, conferences, and performances.",
             "type": "Events",
             "capacity": 200,
-            "image_path": "/images/auditorium.jpg"
+            "image_path": "/images/auditorio.jpg"
         },
         {
             "id": 5,
@@ -38,7 +38,7 @@
             "description": "A facility equipped for aerospace engineering research and development.",
             "type": "Research",
             "capacity": 50,
-            "image_path": "/images/aerospace_engineering_lab.jpg"
+            "image_path": "/images/aerospace-lab.jpg"
         },
         {
             "id": 6,
@@ -46,7 +46,7 @@
             "description": "A modern lab with high-performance computers for data science, programming, and AI courses.",
             "type": "Education",
             "capacity": 35,
-            "image_path": "/images/computer_science_lab.jpg"
+            "image_path": "/images/computer-science-lab.jpg"
         },
         {
             "id": 7,
@@ -54,7 +54,7 @@
             "description": "Workshop space for mechanical engineering students to work on prototypes and machinery.",
             "type": "Research",
             "capacity": 25,
-            "image_path": "/images/mechanical_workshop.jpg"
+            "image_path": "/images/mechanical-engineeringl-lab.jpg"
         },
         {
             "id": 8,
@@ -62,7 +62,7 @@
             "description": "Outdoor soccer field for training, tournaments, and recreational activities.",
             "type": "Sports",
             "capacity": 22,
-            "image_path": "/images/soccer_field.jpg"
+            "image_path": "/images/soccer-field.jpg"
         },
         {
             "id": 9,
@@ -70,7 +70,7 @@
             "description": "A regulation-sized court for tennis practice and competitions.",
             "type": "Sports",
             "capacity": 4,
-            "image_path": "/images/tennis_court.jpg"
+            "image_path": "/images/tennis-court.jpg"
         },
         {
             "id": 10,
@@ -78,7 +78,7 @@
             "description": "Olympic-size swimming pool for recreational and competitive use.",
             "type": "Sports",
             "capacity": 40,
-            "image_path": "/images/university_pool.jpg"
+            "image_path": "/images/pool.jpg"
         },
         {
             "id": 11,
@@ -86,7 +86,7 @@
             "description": "A quiet and sacred space for reflection, prayer, and religious ceremonies.",
             "type": "Cultural",
             "capacity": 150,
-            "image_path": "/images/university_chapel.jpg"
+            "image_path": "/images/chapel.jpg"
         },
         {
             "id": 12,
@@ -94,7 +94,7 @@
             "description": "A large study area inside the main library for individual and group study sessions.",
             "type": "Education",
             "capacity": 120,
-            "image_path": "/images/library_study_hall.jpg"
+            "image_path": "/images/library.jpg"
         },
         {
             "id": 13,
@@ -102,7 +102,7 @@
             "description": "Outdoor cafeteria area surrounded by gardens for students to relax and eat.",
             "type": "Recreation",
             "capacity": 80,
-            "image_path": "/images/cafeteria_patio.jpg"
+            "image_path": "/images/cafeteria.jpg"
         },
         {
             "id": 14,
@@ -110,7 +110,7 @@
             "description": "Main parking area for students and faculty vehicles.",
             "type": "Infrastructure",
             "capacity": 100,
-            "image_path": "/images/parking_lot_a.jpg"
+            "image_path": "/images/parking-lot.jpg"
         },
         {
             "id": 15,
@@ -118,7 +118,7 @@
             "description": "A collaborative workspace for startups, innovation projects, and entrepreneurship programs.",
             "type": "Research",
             "capacity": 45,
-            "image_path": "/images/innovation_center.jpg"
+            "image_path": "/images/lati.jpg"
         }
     ]
 }
