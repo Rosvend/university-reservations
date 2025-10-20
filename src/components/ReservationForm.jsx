@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import spacesData from '../data/data.json';
-import { saveReservation } from '../utils/reservationUtils';
+import { saveReservation, checkDuplicateReservation } from '../utils/reservationUtils';
 import './ReservationForm.css';
 
 /**
@@ -34,6 +34,7 @@ function ReservationForm() {
 
   /**
    * Handle form submission
+   * Implements FR3: Prevent duplicate reservations
    */
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,6 +43,21 @@ function ReservationForm() {
     const selectedSpace = spacesData.spaces.find(
       space => space.id === parseInt(formData.spaceId)
     );
+
+    // FR3: Check for double booking (same space + date + time)
+    const isDuplicate = checkDuplicateReservation(
+      parseInt(formData.spaceId),
+      formData.date,
+      formData.time
+    );
+
+    if (isDuplicate) {
+      setMessage({ 
+        text: `✗ This space is already reserved for ${formData.date} at ${formData.time}. Please choose a different time or date.`, 
+        type: 'error' 
+      });
+      return; // Stop the submission
+    }
 
     // Create reservation object
     const reservation = {

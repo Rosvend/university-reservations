@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import ReservationForm from '../components/ReservationForm';
-import { clearAllReservations } from '../utils/reservationUtils';
+import { clearAllReservations, saveReservation } from '../utils/reservationUtils';
 
 /**
  * Test suite for ReservationForm component
@@ -85,6 +85,88 @@ describe('ReservationForm Component', () => {
     
     fireEvent.change(screen.getByLabelText(/Reservation Time/i), {
       target: { value: '10:00' }
+    });
+    
+    // Submit the form
+    const submitButton = screen.getByText('Create Reservation');
+    fireEvent.click(submitButton);
+    
+    // Check for success message
+    const successMessage = screen.getByText(/Reservation confirmed/i);
+    expect(successMessage).toBeDefined();
+  });
+
+  // FR3: Test for double booking prevention
+  it('should prevent double booking for same space, date, and time', () => {
+    // Create an initial reservation
+    saveReservation({
+      id: 1,
+      studentName: 'First Student',
+      date: '2025-12-25',
+      time: '14:00',
+      spaceId: 1,
+      spaceName: 'Classrooms',
+      createdAt: new Date().toISOString()
+    });
+
+    render(<ReservationForm />);
+    
+    // Try to make a duplicate reservation
+    fireEvent.change(screen.getByLabelText(/Student Name/i), {
+      target: { value: 'Second Student' }
+    });
+    
+    fireEvent.change(screen.getByLabelText(/Select Space/i), {
+      target: { value: '1' }
+    });
+    
+    fireEvent.change(screen.getByLabelText(/Reservation Date/i), {
+      target: { value: '2025-12-25' }
+    });
+    
+    fireEvent.change(screen.getByLabelText(/Reservation Time/i), {
+      target: { value: '14:00' }
+    });
+    
+    // Submit the form
+    const submitButton = screen.getByText('Create Reservation');
+    fireEvent.click(submitButton);
+    
+    // Check for error message about duplicate booking
+    const errorMessage = screen.getByText(/already reserved/i);
+    expect(errorMessage).toBeDefined();
+  });
+
+  // FR3: Test that different times for same space and date are allowed
+  it('should allow reservations for same space and date but different time', () => {
+    // Create an initial reservation
+    saveReservation({
+      id: 1,
+      studentName: 'First Student',
+      date: '2025-12-25',
+      time: '10:00',
+      spaceId: 1,
+      spaceName: 'Classrooms',
+      createdAt: new Date().toISOString()
+    });
+
+    render(<ReservationForm />);
+    
+    // Try to make a reservation at a different time
+    fireEvent.change(screen.getByLabelText(/Student Name/i), {
+      target: { value: 'Second Student' }
+    });
+    
+    fireEvent.change(screen.getByLabelText(/Select Space/i), {
+      target: { value: '1' }
+    });
+    
+    fireEvent.change(screen.getByLabelText(/Reservation Date/i), {
+      target: { value: '2025-12-25' }
+    });
+    
+    fireEvent.change(screen.getByLabelText(/Reservation Time/i), {
+      target: { value: '15:00' }
     });
     
     // Submit the form
