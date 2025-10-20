@@ -1,5 +1,6 @@
 import React from 'react'
 import SpaceList from './components/SpaceList'
+import ReservationForm from './components/ReservationForm'
 
 function App() {
   return (
@@ -10,7 +11,13 @@ function App() {
       </header>
       
       <main className="app-main">
-        <SpaceList />
+        <section className="app-section">
+          <ReservationForm />
+        </section>
+        
+        <section className="app-section">
+          <SpaceList />
+        </section>
       </main>
     </div>
   )
