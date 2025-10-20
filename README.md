@@ -86,13 +86,13 @@ To simplify the management of university space reservations through a **modern, 
    ```bash
    git clone https://github.com/rosvend/university-reservations.git
    cd university-reservations
-````
+```
 
 2. **Install dependencies**
 
    ```bash
    npm install
-   ```
+```
 
 3. **Run the project**
 
